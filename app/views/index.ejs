@@ -60,14 +60,45 @@
             >
             <% } %>
           </div>
-
+          
           <div
             class="mt-4 pt-4 border-t border-black/5 flex justify-between items-center text-xs text-slate-500"
           >
-            <span class="font-bold text-slate-700 truncate max-w-[120px]"
-              >From: <%= msg.sender %></span
-            >
-            <span><%= timeStr %></span>
+            <span class="font-bold text-slate-700 truncate max-w-[120px]">
+              From: <%= msg.sender %>
+            </span>
+
+            <div class="flex items-center gap-4">
+              <span><%= timeStr %></span>
+
+              <!-- LIKE -->
+              <form
+                action="/like/<%= msg.id %>"
+                method="POST"
+                onclick="event.stopPropagation()"
+              >
+                <button
+                  class="flex items-center gap-1 text-slate-500 hover:text-green-600 transition"
+                  title="Like"
+                >
+                  👍 <span><%= msg.likes %></span>
+                </button>
+              </form>
+
+              <!-- DISLIKE -->
+              <form
+                action="/dislike/<%= msg.id %>"
+                method="POST"
+                onclick="event.stopPropagation()"
+              >
+                <button
+                  class="flex items-center gap-1 text-slate-500 hover:text-red-600 transition"
+                  title="Dislike"
+                >
+                  👎 <span><%= msg.dislikes %></span>
+                </button>
+              </form>
+            </div>
           </div>
         </div>
         <% }) %>
